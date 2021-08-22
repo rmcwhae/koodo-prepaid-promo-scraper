@@ -37,4 +37,4 @@ Using AWS Cloudwatch Events, I set an events rule to run this function every day
 
 First, see my article [How to Minimize Your Phone Bill](https://russellmcwhae.ca/journal/minimize-cell-phone).
 
-The idea here is to stock up on prepaid add-ons when they are double or triple their standard amounts. The actual dollar savings in doing this likely will not exceed a hundred dollars a year, but it was a fun project to learn Go and AWS Lambda functions.
+The idea here is to stock up on prepaid add-ons when they are double or triple their standard amounts. Automating this via a scraper means not having to manually check the page at (ir)regular intervals. The actual dollar savings in doing this likely will not exceed a hundred dollars a year, but it was a fun project to learn Go and AWS Lambda functions.
