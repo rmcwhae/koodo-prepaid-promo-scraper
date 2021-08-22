@@ -121,7 +121,6 @@ func start(event scrapeData) {
 	containsWords := event.Words
 	containsWordsArray := strings.Split(containsWords, ",")
 
-	// Start scrape for urls
 	possiblePromo, results, error := checkForAddOnPromo(urlToScrape, containsWordsArray)
 
 	if (error != nil) {
@@ -141,7 +140,7 @@ func start(event scrapeData) {
 
 func contains(s []string, e string) bool {
 	for _, a := range s {
-		if a == e {
+		if strings.Contains(e, a) {
 			return true
 		}
 	}
