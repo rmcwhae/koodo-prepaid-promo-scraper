@@ -31,7 +31,13 @@ Ensure sender/recipient addresses exist SES and are verified. The lambda executi
 
 ### Automation
 
-Using AWS Cloudwatch Events, I set an events rule to run this function every day. It should not exceed the free tier of Lambda functions, but the Cloudwatch custom event might cost a few cents.
+Using AWS Cloudwatch Events, I set an events rule to run this Lambda function every day, with the following input (Constant [JSON text]):
+
+```
+{   "url": "https://www.koodomobile.com/prepaid-plans",   "words": "bonus" }
+```
+
+It should not exceed the free tier of Lambda functions, but the Cloudwatch custom event might cost a few cents.
 
 ## Why?
 
