@@ -37,6 +37,8 @@ Using AWS Cloudwatch Events, I set an events rule to run this Lambda function ev
 {   "url": "https://www.koodomobile.com/prepaid-plans",   "words": "bonus" }
 ```
 
+To schedule the time of day you want it to run, use a cron expression such as `00 13 * * ? *` (13:00 GMT, or 6 AM in my timezone, PDT).
+
 It should not exceed the free tier of Lambda functions, but the Cloudwatch custom event might cost a few cents.
 
 ## Why?
