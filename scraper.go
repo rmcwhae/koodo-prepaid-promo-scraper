@@ -30,8 +30,8 @@ func checkForAddOnPromo(url string, words []string) (bool, string, error) {
 	}
 
 	addOnText := "Koodo Prepaid Add-ons:\n"
-	doc.Find(".add-on-title").Each(func(i int, s *goquery.Selection) {
-		addOnText += s.Text() + "\n"
+	doc.Find(".add-on-info-wrapper").Each(func(i int, s *goquery.Selection) {
+		addOnText += strings.ReplaceAll(strings.TrimSpace(s.Text()), "\n", "") + "\n"
 	})
 
 	if contains(words, strings.ToLower(addOnText)) {
@@ -128,13 +128,13 @@ func start(event scrapeData) {
 	}
 
 	if (possiblePromo) {
-		sendEmail("Possible Koodo Prepaid Promotions!", results)
-		fmt.Println("Possible Koodo Promotion")
-
+		bonusMessage := "💰💰 Possible Koodo bonus found! 💰💰"
+		sendEmail(bonusMessage, results)
+		fmt.Println(bonusMessage)
 	} else {
-		sendEmail("No Koodo Prepaid Promotion", results)
-		fmt.Println("No Koodo Promotion")
-
+		regularMessage := "No Koodo promotions"
+		sendEmail(regularMessage, results)
+		fmt.Println(regularMessage)
 	}
 }
 
@@ -154,4 +154,10 @@ type scrapeData struct {
 
 func main() {
 	lambda.Start(start)
+
+	// For testing locally: go run scraper.go
+	// keywords := []string{"bonus"}
+	// _, results, _ := checkForAddOnPromo("https://www.koodomobile.com/prepaid-plans", keywords)
+	// fmt.Printf(results)
+
 }
