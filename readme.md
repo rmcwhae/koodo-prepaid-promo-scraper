@@ -27,11 +27,11 @@ SENDER=
 SES_LOCATION=
 ```
 
-Ensure sender/recipient addresses exist SES and are verified. The lambda execution role will also required SES permission.
+Ensure sender/recipient addresses exist in SES and are verified. The lambda execution role will also require SES permission.
 
 ### Automation
 
-Using AWS Cloudwatch Events, I set an events rule to run this Lambda function every day, with the following input (Constant [JSON text]):
+Using AWS EventBridge, I set a rule to run this Lambda function every day, with the following input (Constant [JSON text]):
 
 ```
 {   "url": "https://www.koodomobile.com/prepaid-plans",   "words": "bonus" }
@@ -39,7 +39,7 @@ Using AWS Cloudwatch Events, I set an events rule to run this Lambda function ev
 
 To schedule the time of day you want it to run, use a cron expression such as `00 13 * * ? *` (13:00 GMT, or 6 AM in my timezone, PDT).
 
-It should not exceed the free tier of Lambda functions, but the Cloudwatch custom event might cost a few cents.
+The scraper should not exceed the free tier of Lambda functions. Event Buses in EventBridge are probably free as well, though it isn’t clear to me if these are “default service events” or custom events (the latter might cost a fraction of a cent per month).
 
 ## Why?
 
